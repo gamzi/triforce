@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/triforce/static/css/main.927327cb.css",
+    "main.js": "/triforce/static/js/main.0b182c8f.js",
+    "static/js/787.a4c6a8dd.chunk.js": "/triforce/static/js/787.a4c6a8dd.chunk.js",
+    "static/media/work_preview_big_1.png": "/triforce/static/media/work_preview_big_1.67b90a18de9d9de64f6e.png",
+    "static/media/work_preview_big_5.png": "/triforce/static/media/work_preview_big_5.ae5db11248fa3612b650.png",
+    "static/media/work_preview_horizontal_1.png": "/triforce/static/media/work_preview_horizontal_1.2eb200632b43885a7511.png",
+    "static/media/work_preview_horizontal_3.png": "/triforce/static/media/work_preview_horizontal_3.da955ab8e4d53efd6608.png",
+    "static/media/work_preview_square_right_4.png": "/triforce/static/media/work_preview_square_right_4.6e2aed09268e759ba74a.png",
+    "static/media/work_preview_square_left_1.png": "/triforce/static/media/work_preview_square_left_1.d0ea11cb27991a3cc25e.png",
+    "static/media/work_preview_square_left_5.png": "/triforce/static/media/work_preview_square_left_5.6f19acc4830c14b4210b.png",
+    "static/media/work_preview_square_left_3.png": "/triforce/static/media/work_preview_square_left_3.6dfaf0523b3300959f7e.png",
+    "static/media/work_preview_square_left_2.png": "/triforce/static/media/work_preview_square_left_2.8ad7b3d8fd12d45b6116.png",
+    "static/media/work_preview_big_2.png": "/triforce/static/media/work_preview_big_2.afec81a4aa8c0ef8b228.png",
+    "static/media/NeurialGrotesk-BoldItalic.otf": "/triforce/static/media/NeurialGrotesk-BoldItalic.b37fd3beb3f5be4faa76.otf",
+    "static/media/NeurialGrotesk-Bold.otf": "/triforce/static/media/NeurialGrotesk-Bold.4f6ea12ae80b7868db79.otf",
+    "static/media/NeurialGrotesk-MediumItalic.otf": "/triforce/static/media/NeurialGrotesk-MediumItalic.f731b7b50f179ffed154.otf",
+    "static/media/NeurialGrotesk-Extrabold.otf": "/triforce/static/media/NeurialGrotesk-Extrabold.f8cf2251098b8b483167.otf",
+    "static/media/NeurialGrotesk-Medium.otf": "/triforce/static/media/NeurialGrotesk-Medium.404bf9a22ffb65e86364.otf",
+    "static/media/NeurialGrotesk-ExtraboldItalic.otf": "/triforce/static/media/NeurialGrotesk-ExtraboldItalic.9cf1e55cac209b4f0ff7.otf",
+    "static/media/NeurialGrotesk-Italic.otf": "/triforce/static/media/NeurialGrotesk-Italic.981eba1ddd6cab574792.otf",
+    "static/media/NeurialGrotesk-Regular.otf": "/triforce/static/media/NeurialGrotesk-Regular.08e28572480a3075c362.otf",
+    "static/media/NeurialGrotesk-LightItalic.otf": "/triforce/static/media/NeurialGrotesk-LightItalic.55f5097d9329f36208ea.otf",
+    "static/media/NeurialGrotesk-Light.otf": "/triforce/static/media/NeurialGrotesk-Light.f1caf2c99db76d9ff546.otf",
+    "static/media/work_preview_big_6.png": "/triforce/static/media/work_preview_big_6.84bd0d9fdbb7386ec201.png",
+    "static/media/work_preview_square_right_1.png": "/triforce/static/media/work_preview_square_right_1.3eeb88f81dcaaae3a113.png",
+    "static/media/work_preview_square_right_5.png": "/triforce/static/media/work_preview_square_right_5.ab47f1b11bc632ecbe46.png",
+    "static/media/work_preview_square_left_6.png": "/triforce/static/media/work_preview_square_left_6.4624d194b920df9a23af.png",
+    "static/media/work_preview_square_right_3.png": "/triforce/static/media/work_preview_square_right_3.a22809bbf4f7de08aceb.png",
+    "static/media/title.svg": "/triforce/static/media/title.db0918c7c753e16bda840b6a5d835718.svg",
+    "index.html": "/triforce/index.html",
+    "static/media/logo.svg": "/triforce/static/media/logo.b1e67d73c9d8cb734601316361900ca7.svg",
+    "main.927327cb.css.map": "/triforce/static/css/main.927327cb.css.map",
+    "main.0b182c8f.js.map": "/triforce/static/js/main.0b182c8f.js.map",
+    "787.a4c6a8dd.chunk.js.map": "/triforce/static/js/787.a4c6a8dd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.927327cb.css",
+    "static/js/main.0b182c8f.js"
+  ]
+}
