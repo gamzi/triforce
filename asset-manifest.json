@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/triforce/static/css/main.33581f32.css",
-    "main.js": "/triforce/static/js/main.6be785be.js",
+    "main.js": "/triforce/static/js/main.582e3de2.js",
     "static/js/787.a4c6a8dd.chunk.js": "/triforce/static/js/787.a4c6a8dd.chunk.js",
     "static/media/work_preview_big_1.png": "/triforce/static/media/work_preview_big_1.67b90a18de9d9de64f6e.png",
     "static/media/work_preview_big_5.png": "/triforce/static/media/work_preview_big_5.ae5db11248fa3612b650.png",
@@ -35,11 +35,11 @@
     "static/media/close.svg": "/triforce/static/media/close.5bd650c0551af15ebd0e69ece27f9d04.svg",
     "static/media/theme_switch.svg": "/triforce/static/media/theme_switch.c5f86d0f0f3c7cb28a7934b16aa9dc18.svg",
     "main.33581f32.css.map": "/triforce/static/css/main.33581f32.css.map",
-    "main.6be785be.js.map": "/triforce/static/js/main.6be785be.js.map",
+    "main.582e3de2.js.map": "/triforce/static/js/main.582e3de2.js.map",
     "787.a4c6a8dd.chunk.js.map": "/triforce/static/js/787.a4c6a8dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33581f32.css",
-    "static/js/main.6be785be.js"
+    "static/js/main.582e3de2.js"
   ]
 }
