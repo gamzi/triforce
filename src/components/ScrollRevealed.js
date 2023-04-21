@@ -8,21 +8,29 @@ const Root = styled.div`
 `;
 
 const Content = styled.div`
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    
     height: 100%;
-    transform: translateY(100%);
+    transform: translateY(110%);
     ${(props) => props.show && props.animation};
 `;
 
-const ScrollRevealed = ({delay = 0, children}) => {
+const ScrollRevealed = ({delay = 0, children, fadeIn = false, className}) => {
     const ref = useRef(null);
 
-    const animation = `animation: 0.5s cubic-bezier(.7,.57,.27,.82) ${delay}s 1 slideInFromBottom forwards, 0.5s ease-in 1 fade-in forwards`;
+    let animation = `animation: 0.5s cubic-bezier(.7,.57,.27,.82) ${delay}s 1 slideInFromBottom both`;
+
+    if (fadeIn) {
+        animation += `, 0.5s ease-in 0s 1 fade-in both`;
+    }
   
     const isInViewport = useIsInViewport(ref);
     console.log('is in viewport: ', isInViewport);
   
     return (
-        <Root ref={ref}>
+        <Root ref={ref} className={className}>
             <Content show={isInViewport} delay={delay} animation={animation}>
                 {children}
             </Content>

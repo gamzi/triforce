@@ -8,29 +8,55 @@ const Root = styled.div`
 
 const Line = styled.div`
     position: absolute;
-    left: -80px;
+    left: -${(props) => props.theme.bodyP}px;
     visibility: ${(props) => props.show ? 'visible' : 'hidden'};
-    border-top: 1px solid white;
-    ${(props) => props.show && 'animation: 0.6s ease-out 1 expand forwards'};
+    border-top: 1px solid ${(props) => props.theme.themeColor.main}80;
+
+    ${(props) => {
+        if (props.noAnimation) {
+            return `
+                right: -${props.theme.bodyP}px;
+                
+                ${props.theme.device.mobile} {
+                    right: -${props.theme.p}px;
+                }
+                
+            `;
+        } else {
+            return props.show ? `animation: 0.6s ease-out 1 expand forwards;` : ``;
+        }
+    }}
 
     @keyframes expand {
         0% {
-            right: 100%; //calc(100% + 80px) for full?
+            right: 100%;
         }
         100% {
-            right: -80px;
+            right: -${props => props.theme.bodyP}px;
+        }
+    }
+
+    ${props => props.theme.device.mobile} {
+
+        @keyframes expand {
+            0% {
+                right: 100%;
+            }
+            100% {
+                right: -${props => props.theme.p}px;
+            }
         }
     }
 `;
 
-const Separator = () => {
+const Separator = ({noAnimation = false}) => {
     const ref = useRef(null);
   
     const isInViewport = useIsInViewport(ref);
-    console.log('line in viewport', isInViewport);
+    
     return (
         <Root ref={ref}>
-            <Line show={isInViewport}/>
+            <Line show={noAnimation || isInViewport} noAnimation={noAnimation}/>
         </Root>
     );
 }

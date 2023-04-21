@@ -6,6 +6,7 @@ import {Row, Col} from '../components/Grid';
 import Typography from '../components/Typography';
 import ScrollRevealed from '../components/ScrollRevealed';
 import Separator from '../components/Separator';
+import Carousel from '../components/Carousel';
 
 import work_preview_big_1 from '../assets/work_preview_big_1.png';
 import work_preview_square_right_1 from '../assets/work_preview_square_right_1.png';
@@ -41,6 +42,12 @@ const Image = styled.div`
 
     ${(props) => props.large && `
         padding-top: 73%;
+        margin-bottom: 20px;
+
+        ${props.theme.device.mobile} {
+            height: 480px;
+            padding: 0;
+        }
     `};
 
     ${(props) => props.square && `
@@ -49,9 +56,14 @@ const Image = styled.div`
 
     ${(props) => props.horizontal && `
         padding-top: 56.25%;
+
+        //asset isn't appropriate for this ratio
+        // ${props.theme.device.mobile} {
+        //     padding-top: 100%;
+        // }
     `};
 
-    ${(props) => props.fill && `
+    ${(props) => props.tall && `
         width: 100%;
         height: 100%;
     `};
@@ -67,49 +79,51 @@ const Root = styled.div`
     a {
         color: inherit;
     }
-`;
 
-const WorkWrapper = styled.div`
-    position: relative;
+    .work-row {
+        margin-top: 112px;
+    }
 
-    margin: 122px 0;
-
-    ${Row} {
-        margin-left: -5px;
-        margin-right: -5px;
-
-        ${Col} {
-            margin-left: 5px;
-            margin-right: 5px;
+    .work-row > ${Col} {
+        align-self: flex-start;
+    }
+    
+    ${props => props.theme.device.desktop} {
+        .work-row > ${Col}.sticky {
+            position: sticky;
+            top: 120px;
         }
     }
 
-    ${Col}, ${Image} {
-        margin-bottom: 10px;
+    .work-row > ${Col} ${Image}:not(:last-child) {
+        margin-bottom: 20px;
     }
     
-    ${Col} ${Image}:last-child {
-        margin-bottom: 0;
-    }
-`;
+    .social-link {
+        box-sizing: border-box;
+        min-width: 33.33%;
+        padding-right: 20px;
 
-const WorkDescriptionWrapper = styled.div`
-    float: left;
-    width: 33.33%;
-    position: sticky;
-    top: 120px;
+        ${props => props.theme.device.mobile} {
+            min-width: 50%;
+            text-align: center;
+        }
+    }
 `;
 
 const WorkDescription = styled.div`
-    padding: 120px 80px 0 0;
-    margin-bottom: 10px;
-    max-width: 265px;
+    padding: 120px 20px 0 0;
+    max-width: 285px;
+
+    ${props => props.theme.device.mobile} {
+        max-width: none;
+        padding: 0;
+    }
 `;
 
-const WorkImagesWrapper = styled.div`
-    display: inline-block;
-    width: 66.66%;
-    overflow: hidden;
+const Anchor = styled.span`
+    position: absolute;
+    top: -122px;
 `;
 
 const delay = 0.3;
@@ -125,6 +139,33 @@ function Home() {
         }
     }, [rootClass]);
 
+    const referralList = [
+        {
+            url: 'https://www.linkedin.com/company/remasterlegal/',
+            info: ['Remaster', 'Ralph Wertheimer', 'CBDO'],
+            description: 'We\'ve felt very lucky to have met and gotten to work with Jovan and his team at Triforce Studio. Reliable, Agile, and has a solution for what seems for everything, I highly recommend Triforce Studio.'
+        },
+        {
+            info: ['1A Labs', 'Keegan Sard', 'Director'],
+            description: 'Their approach to creativity is distinctive. The outcome of their work exceeded our expectations, demonstrating the exceptional quality and attention to detail that they apply to their craft.'
+        },
+        {
+            url: 'https://www.linkedin.com/company/fairxyz/',
+            info: ['Fair.xyz', 'Isaac Kamlish', 'Founder'],
+            description: 'Triforce, a multi-modal studio, provided us with invaluable support in achieving our goals in a truly impactful way. Their innovative approach and exceptional talent enabled us to go from zero to one.'
+        },
+        {
+            url: 'https://www.linkedin.com/company/forcemstudios/',
+            info: ['Force Majeure', 'Dario Kriola', 'Founder'],
+            description: 'As a company in a creative industry - we frequently need top notch design work. It has been notoriously difficult for us to find a reliable partner in this domain, until we came across Triforce studio.'
+        },
+        {
+            url: 'https://www.linkedin.com/company/serbiangamesassociation/',
+            info: ['SGA', 'Kristina Jankovic', 'Executive Manager'],
+            description: 'Always forward-thinking and out-of-the-box. These two traits combined with punctuality and a sense of responsibility always made working with Triforce something I was looking forward to.'
+        }
+    ];
+
     return (
         <Root className={rootClass}>
             <Head delay={1}/>
@@ -132,27 +173,28 @@ function Home() {
             <Separator/>
 
             <Row padded>
-                <Col size={4} style={{opacity: '0.3'}}>
-                    <ScrollRevealed delay={delay}>
+                <Anchor id="about"></Anchor>
+                <Col span={4} style={{opacity: '0.3'}} mCenterText>
+                    <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large">
                             Working worldwide for:
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.1}>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
                         <Typography size="large">
-                            Web3<br/>
-                            Tech<br/>
+                            Web3<br/><br/>
+                            Tech<br/><br/>
                             Culture
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay + 0.2} fadeIn>
                         <Typography size="large">
-                            Realestate<br/>
-                            Non-For-Profit<br/>
+                            Realestate<br/><br/>
+                            Non-For-Profit<br/><br/>
                             Craft
                         </Typography>
                     </ScrollRevealed>
@@ -161,9 +203,17 @@ function Home() {
 
             <Separator/>
 
-            <WorkWrapper>
-                <WorkDescriptionWrapper>
-                    <ScrollRevealed>
+            <Row className="work-row">
+                <Anchor id="work"></Anchor>
+
+                <Col span={12} className="mobile-only">
+                    <ScrollRevealed fadeIn>
+                        <Image src={work_preview_big_1} large></Image>
+                    </ScrollRevealed>
+                </Col>
+
+                <Col span={4} className="sticky">
+                    <ScrollRevealed fadeIn>
                         <WorkDescription>
                             <Typography size="large">Fodl</Typography>
                             <Typography size="large">Branding, UI, Web</Typography>
@@ -174,171 +224,215 @@ function Home() {
                             </Typography>
                         </WorkDescription>
                     </ScrollRevealed>
-                </WorkDescriptionWrapper>
-                <WorkImagesWrapper>
-                    <ScrollRevealed>
+                </Col>
+                <Col span={8}>
+                    <ScrollRevealed fadeIn className="desktop-only">
                         <Image src={work_preview_big_1} large></Image>
                     </ScrollRevealed>
                     <Row>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_left_1} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_left_1} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_right_1} square></Image>
                             </ScrollRevealed>
                         </Col>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_right_1} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_right_1} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_left_1} square></Image>
                             </ScrollRevealed>
                         </Col>
                     </Row>
-                    <ScrollRevealed>
+                    <ScrollRevealed fadeIn>
                         <Image src={work_preview_horizontal_1} horizontal></Image>
                     </ScrollRevealed>
-                </WorkImagesWrapper>
-            </WorkWrapper>
+                </Col>
+            </Row>
 
-            <WorkWrapper>
-                <WorkDescriptionWrapper>
-                    <ScrollRevealed>
+            <Row className="work-row">
+                <Col span={12} className="mobile-only">
+                    <ScrollRevealed fadeIn>
+                        <Image src={work_preview_big_2} large></Image>
+                    </ScrollRevealed>
+                </Col>
+
+                <Col span={4} className="sticky">
+                    <ScrollRevealed fadeIn>
                         <WorkDescription>
-                            <Typography size="large">Fodl</Typography>
-                            <Typography size="large">Branding, UI, Web</Typography>
+                            <Typography size="large">Remaster</Typography>
+                            <Typography size="large">Branding, UI</Typography>
                             <Typography size="large">New York, USA</Typography>
+                            <Typography size="large">2023</Typography>
                             <br/>
                             <Typography>
-                                FODL is a fully decentralized (non-custodial) leverage trading platform using liquidity from collateral lending platforms like Compound and Aave instead of funding rate and margin markets.
+                                Remaster is turning legal contracts into enforceable protocols. Their mission is to accelerate commerce through the right legal infrastructure. Working on bringing Web2 brands into Web3, supporting them with the legal infrastructure they need.
                             </Typography>
                         </WorkDescription>
                     </ScrollRevealed>
-                </WorkDescriptionWrapper>
-                <WorkImagesWrapper>
-                    <ScrollRevealed>
+                </Col>
+                <Col span={8}>
+                    <ScrollRevealed fadeIn className="desktop-only">
                         <Image src={work_preview_big_2} large></Image>
                     </ScrollRevealed>
                     <Row>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_left_2} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_left_2} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_right_2} square></Image>
                             </ScrollRevealed>
                         </Col>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_right_2} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_right_2} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_left_2} square></Image>
                             </ScrollRevealed>
                         </Col>
                     </Row>
                     <Row>
-                        <Col size={6}>
-                            <ScrollRevealed>
+                        <Col span={6}>
+                            <ScrollRevealed fadeIn>
                                 <Image src={work_preview_square_left_5} square></Image>
                             </ScrollRevealed>
                         </Col>
-                        <Col size={6}>
-                            <ScrollRevealed>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn>
                                 <Image src={work_preview_square_right_5} square></Image>
                             </ScrollRevealed>
                         </Col>
                     </Row>
-                </WorkImagesWrapper>
-            </WorkWrapper>
+                </Col>
+            </Row>
 
-            <WorkWrapper>
-                <WorkDescriptionWrapper>
-                    <ScrollRevealed>
+            <Row className="work-row">
+                <Col span={12} className="mobile-only">
+                    <ScrollRevealed fadeIn>
+                        <Image src={work_preview_big_5} large></Image>
+                    </ScrollRevealed>
+                </Col>
+
+                <Col span={4} className="sticky">
+                    <ScrollRevealed fadeIn>
                         <WorkDescription>
-                            <Typography size="large">Fodl</Typography>
+                            <Typography size="large">Venato</Typography>
                             <Typography size="large">Branding, UI, Web</Typography>
                             <Typography size="large">New York, USA</Typography>
+                            <Typography size="large">2023</Typography>
                             <br/>
                             <Typography>
-                                FODL is a fully decentralized (non-custodial) leverage trading platform using liquidity from collateral lending platforms like Compound and Aave instead of funding rate and margin markets.
+                                Venato is a revolutionary portfolio tracking software, engineered to address the unique pricing and tracking challenges presented by DeFi investments. Venato provides users with a comprehensive solution to effectively manage and monitor investments in this rapidly growing sector.
                             </Typography>
                         </WorkDescription>
                     </ScrollRevealed>
-                </WorkDescriptionWrapper>
-                <WorkImagesWrapper>
-                    <ScrollRevealed>
+                </Col>
+                <Col span={8}>
+                    <ScrollRevealed fadeIn className="desktop-only">
                         <Image src={work_preview_big_5} large></Image>
                     </ScrollRevealed>
                     <Row>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_left_3} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_left_3} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_right_3} square></Image>
                             </ScrollRevealed>
                         </Col>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_right_3} square></Image>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn>
+                                <Image className="desktop-only" src={work_preview_square_right_3} square></Image>
+                                <Image className="mobile-only" src={work_preview_square_left_3} square></Image>
                             </ScrollRevealed>
                         </Col>
                     </Row>
-                    <ScrollRevealed>
+                    <ScrollRevealed fadeIn>
                         <Image src={work_preview_horizontal_3} horizontal></Image>
                     </ScrollRevealed>
-                </WorkImagesWrapper>
-            </WorkWrapper>
+                </Col>
+            </Row>
 
-            <WorkWrapper>
-                <WorkDescriptionWrapper>
+            <Row className="work-row">
+                <Col span={12} className="mobile-only">
+                    <ScrollRevealed fadeIn>
+                        <Image src={work_preview_big_6} large></Image>
+                    </ScrollRevealed>
+                </Col>
+
+                <Col span={4} className="sticky">
                     <WorkDescription>
-                        <ScrollRevealed delay={delay}>
+                        <ScrollRevealed delay={delay} fadeIn>
                             <Typography size="large">Sequence Groovebox</Typography>
                             <Typography size="large">Branding, UI</Typography>
                             <Typography size="large">Belgrade, Serbia</Typography>
                             <Typography size="large">2019</Typography>
                             <br/>
                             <Typography>
-                                Sequence Groovebox is appealing and flexible Android app for music creation and performance. Unlock your creativity with different instruments and sounds, without stopping the music flow. Produce beats, bass lines and melodies using powerful synthesizer and punchy drum machine.
+                                Sequence Groovebox is an appealing and flexible Android app for music creation and performance. Unlock your creativity with different instruments and sounds, without stopping the music flow. Produce beats, bass lines and melodies using a powerful synthesizer and punchy drum machine.
                             </Typography>
                         </ScrollRevealed>
                     </WorkDescription>
-                </WorkDescriptionWrapper>
+                </Col>
 
-                <WorkImagesWrapper>
-                    <ScrollRevealed>
+                <Col span={8}>
+                    <ScrollRevealed fadeIn className="desktop-only">
                         <Image src={work_preview_big_6} large></Image>
                     </ScrollRevealed>
                     
                     <Row>
-                        <Col size={6}>
-                            <ScrollRevealed>
+                        <Col span={6} noBottomMargin>
+                            <ScrollRevealed fadeIn>
                                 <Image src={work_preview_square_left_4} square></Image>
                                 <Image src={work_preview_square_left_6} square></Image>
                             </ScrollRevealed>
                         </Col>
-                        <Col size={6}>
-                            <ScrollRevealed>
-                                <Image src={work_preview_square_right_4} fill></Image>
+                        <Col span={6} noBottomMargin>
+                            <ScrollRevealed delay={0.1} fadeIn>
+                                <Image src={work_preview_square_right_4} tall></Image>
                             </ScrollRevealed>
                         </Col>
                     </Row>
-                </WorkImagesWrapper>
-            </WorkWrapper>
+                </Col>
+            </Row>
 
             <Separator/>
 
             <Row padded>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay}>
+                <Anchor id="how-to"></Anchor>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large">
-                            How to
+                            How to:
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.1}>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
                         <Typography size="large">
-                            Create Branding Strategy<br/>
+                            Create Branding Strategy<br/><br/>
                             Communicate Visually
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay + 0.2} fadeIn>
                         <Typography size="large">
-                            Form a Brand Identity<br/>
+                            Form a Brand Identity<br/><br/>
                             Design a Product
                         </Typography>
+                    </ScrollRevealed>
+                </Col>
+            </Row>
+
+            <Separator/>
+
+            <Row padded>
+                <Col span={4}>
+                    <ScrollRevealed delay={delay} fadeIn>
+                        <Typography size="large" className="max-col-typography-width">
+                            In Triforce, we are dedicated to meeting customers unique needs and providing them with the highest quality solutions. Here are a few statements from our clients:
+                        </Typography>
+                    </ScrollRevealed>
+                </Col>
+                <Col span={8}>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
+                        <Carousel items={referralList}></Carousel>
                     </ScrollRevealed>
                 </Col>
             </Row>
@@ -346,80 +440,22 @@ function Home() {
             <Separator/>
 
             <Row padded>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay}>
-                        <Typography size="large">
-                            This is the part where we brag about our client experiance
+                <Anchor id="contact"></Anchor>
+                <Col span={4}>
+                    <ScrollRevealed delay={delay} fadeIn>
+                        <Typography size="xlarge">Lets work together</Typography>
+                    </ScrollRevealed>
+                </Col>
+                <Col span={4}>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
+                        <Typography size="large" className="max-col-typography-width">
+                            We are enthusiastic about discovering more about your organization and helping you achieve a unique and clearly defined visual strategy.
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.1}>
-                        <Typography size="large">
-                            Create Branding Strategy<br/>
-                            Communicate Visually<br/>
-                        </Typography>
-                    </ScrollRevealed>
-                </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
-                        <Typography size="large">
-                            Form a Brand Identity<br/>
-                            Design a Product<br/>
-                        </Typography>
-                    </ScrollRevealed>
-                </Col>
-            </Row>
-
-            <Separator/>
-
-            <Row padded>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay}>
-                        <Typography size="large">This is the part where we brag about our client experiance</Typography>
-                    </ScrollRevealed>
-                </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.1}>
-                        <Typography size="large">
-                            Project Name<br/>
-                            Gospodin Petrovic<br/>
-                            Founder<br/>
-                        </Typography>
-                    </ScrollRevealed>
-                </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
-                        <Typography size="large">
-                            Project Name<br/>
-                            Gospodin Petrovic<br/>
-                            Founder<br/>
-                        </Typography>
-                        <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                        </Typography>
-                    </ScrollRevealed>
-                </Col>
-            </Row>
-
-            <Separator/>
-
-            <Row padded>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay}>
-                        <Typography size="xlarge">Work with us</Typography>
-                    </ScrollRevealed>
-                </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.1}>
-                        <Typography size="large">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                        </Typography>
-                    </ScrollRevealed>
-                </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
-                        <Typography size="large">Work with us</Typography>
+                <Col span={4}>
+                    <ScrollRevealed delay={delay + 0.2} fadeIn>
+                        <Typography size="large">Reach out at:</Typography>
                         <Typography size="large">hello@triforcestudio.com</Typography>
                     </ScrollRevealed>
                 </Col>
@@ -428,21 +464,30 @@ function Home() {
             <Separator/>
 
             <Row padded>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay}>
+                <Col span={4} mCenterText>
+                    <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large">Feel free to reach out if you want to collaborate with us, or simply have a chat.</Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4} style={{opacity: '0.3'}}>
-                    <ScrollRevealed delay={delay + 0.1}>
+                <Col span={4} style={{opacity: '0.3'}} mCenterText>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
                         <Typography size="large">
                             <a href="mailto:hello@triforcestudio.com">hello@triforcestudio.com</a>
                         </Typography>
                     </ScrollRevealed>
                 </Col>
-                <Col size={4}>
-                    <ScrollRevealed delay={delay + 0.2}>
-                        <Typography size="large">Follow us:</Typography>
+                <Col span={4}>
+                    <ScrollRevealed delay={delay + 0.2} fadeIn>
+                        <Row>
+                            <Col span={3} mCenterText>
+                                <Typography size="large">Follow us:</Typography>
+                            </Col>
+                            <Col span={9}>
+                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.instagram.com/triforcecreates/" target="_blank">Instagram</Typography>
+                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.linkedin.com/company/triforcestudio" target="_blank">Linkedin</Typography>
+                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.behance.net/triforcestudio" target="_blank">Behance</Typography>
+                            </Col>
+                        </Row>
                     </ScrollRevealed>
                 </Col>
             </Row>

@@ -1,9 +1,11 @@
-import {useEffect, useState, useMemo} from 'react';
+import {useEffect, useState, useMemo, useRef} from 'react';
 
 export function useIsInViewport(ref, rootMargin = '-150px') {
     const [isIntersecting, setIsIntersecting] = useState(false);
   
-    const observer = useMemo(
+    const observer = useRef(null);
+
+    observer.current = useMemo(
         () =>
             new IntersectionObserver(
                 ([entry], o) => {
@@ -20,10 +22,10 @@ export function useIsInViewport(ref, rootMargin = '-150px') {
     );
   
     useEffect(() => {
-        observer.observe(ref.current);
+        observer.current.observe(ref.current);
     
         return () => {
-            observer.disconnect();
+            observer.current.disconnect();
         };
     }, [ref, observer]);
   
