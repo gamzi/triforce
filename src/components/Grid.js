@@ -6,7 +6,16 @@ export const Row = styled.div`
     position: relative;
     
     margin-right: -20px;
-    ${(props) => props.padded && `padding: 70px 0 50px 0`}
+    ${(props) => props.padded && `padding: 84px 0 64px 0;`}
+
+    
+    ${(props) => `${props.theme.device.laptop} {
+        ${props.padded && `padding: 60px 0 40px 0;`}
+    }`}
+
+    ${(props) => `${props.theme.device.mobile} {
+        ${props.padded && `padding: 40px 0 20px 0;`}
+    }`}
 `;
 
 export const Col = styled.div`
@@ -32,9 +41,5 @@ export const Col = styled.div`
         ${props.mCenterText && `
             text-align: center;
         `}
-    }`}
-
-    .max-col-typography-width {
-        max-width: 350px; 
-    }   
+    }`} 
 `;

@@ -27,7 +27,6 @@ const ScrollRevealed = ({delay = 0, children, fadeIn = false, className}) => {
     }
   
     const isInViewport = useIsInViewport(ref);
-    console.log('is in viewport: ', isInViewport);
   
     return (
         <Root ref={ref} className={className}>

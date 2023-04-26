@@ -40,6 +40,32 @@ const ImageScrollItem = styled(TitleImage)`
     }
 `;
 
+const Disclaimer = styled(Typography)`
+    margin-top: 130px;
+    padding-left: 8px;
+
+    &::before {
+        content: '* ';
+        margin-left: -8px;
+    }
+    
+    ${props => props.theme.device.desktop} {
+        margin-top: 230px;
+    }
+`;
+
+const Subtitle = styled(Row)`
+    padding: 120px 0 60px 0;
+
+    ${props => props.theme.device.laptop} {
+        padding: 90px 0 20px 0;
+    }
+
+    ${props => props.theme.device.mobile} {
+        padding: 190px 0 56px 0;
+    }
+`;
+
 const Head = ({delay = 1}) => {
     return (
         <Root>
@@ -54,7 +80,7 @@ const Head = ({delay = 1}) => {
                 </ImageScrollWrapper>
             </TitleWrapper>
 
-            <Row padded>
+            <Subtitle padded>
                 <Col span={4} className="desktop-only">
                     <ScrollRevealed delay={delay + 0.3} fadeIn>
                         <Typography size="large" opacity={0.3}>
@@ -78,12 +104,12 @@ const Head = ({delay = 1}) => {
                         <Typography size="xlarge">
                             We help create visual narratives that move businesses, people and the world forward.
                         </Typography>
-                        <Typography opacity={0.3} style={{marginTop: '150px'}}>
-                            * Our full web presentation is currently in production. In the meantime, please enjoy the short version and feel free to reach out for any additional details.
-                        </Typography>
+                        <Disclaimer opacity={0.3}>
+                            Our full web presentation is currently in production. In the meantime, please enjoy the short version and feel free to reach out for any additional details.
+                        </Disclaimer>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </Subtitle>
         </Root>
     );
 }

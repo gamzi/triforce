@@ -56,11 +56,6 @@ const Image = styled.div`
 
     ${(props) => props.horizontal && `
         padding-top: 56.25%;
-
-        //asset isn't appropriate for this ratio
-        // ${props.theme.device.mobile} {
-        //     padding-top: 100%;
-        // }
     `};
 
     ${(props) => props.tall && `
@@ -72,7 +67,6 @@ const Image = styled.div`
     background-position: center center;  
 `;
 
-//TO DO DELAY RENDER
 const Root = styled.div`
     position: relative;
 
@@ -98,18 +92,114 @@ const Root = styled.div`
     .work-row > ${Col} ${Image}:not(:last-child) {
         margin-bottom: 20px;
     }
-    
-    .social-link {
-        box-sizing: border-box;
-        min-width: 33.33%;
-        padding-right: 20px;
 
-        ${props => props.theme.device.mobile} {
-            min-width: 50%;
-            text-align: center;
+    .max-col-typography-width {
+        max-width: 350px; 
+
+        ${(props) => `${props.theme.device.mobile} {
+            max-width: initial;
+        }`}
+    }  
+`;
+
+const About = styled(Row)`{
+    padding-bottom: 145px;
+
+    ${props => props.theme.device.laptop} {
+        padding-bottom: 130px;
+    }
+
+    ${props => props.theme.device.mobile} {
+        padding: 74px 0 70px;
+    }
+}`;
+
+const AboutItem = styled(Typography)`{
+    &:not(:first-child) {
+        ${props => props.theme.device.desktop} {
+            margin-top: 74px;
+        }
+
+        ${props => props.theme.device.laptop} {
+            margin-top: 50px;
         }
     }
-`;
+    
+    ${props => props.theme.device.mobile} {
+        margin-top: 50px;
+        
+        &:first-child {
+            margin-top: 30px;
+        }
+    }
+}`;
+
+const HowTo = styled(Row)`{
+    padding-bottom: 260px;
+
+    ${props => props.theme.device.laptop} {
+        padding-bottom: 180px;
+    }
+
+    ${props => props.theme.device.mobile} {
+        padding: 120px 0 170px;
+    }
+}`;
+
+const HowToItem = styled(Typography)`{
+    &:not(:first-child) {
+        ${props => props.theme.device.desktop} {
+            margin-top: 74px;
+        }
+        
+        ${props => props.theme.device.laptop} {
+            margin-top: 74px;
+        }
+    }
+    
+    ${props => props.theme.device.mobile} {
+        margin-top: 70px;
+        
+        &:first-child {
+            margin-top: 55px;
+        }
+    }
+}`;
+
+const Contact = styled(Row)`{
+    padding-bottom: 127px;
+
+    ${props => props.theme.device.mobile} {
+        padding-bottom: 40px;
+
+        ${Col}:nth-of-type(2) {
+            margin: 40px 0 95px;
+        }
+    }
+}`;
+
+const Footer = styled(Row)`{
+    ${props => props.theme.device.mobile} {
+        padding: 65px 0 72px 0;
+    
+        >${Col}:nth-of-type(2) {
+            margin: 58px 0 102px;
+        }
+    }
+}`;
+
+const SocialLink = styled(Typography)`{
+    box-sizing: border-box;
+    min-width: 33.33%;
+    padding-right: 20px;
+
+    ${props => props.theme.device.mobile} {
+        text-align: center;
+        width: 100%;
+        padding-right: 0;
+        margin-top: 50px;
+    }
+}`
 
 const WorkDescription = styled.div`
     padding: 120px 20px 0 0;
@@ -172,7 +262,7 @@ function Home() {
 
             <Separator/>
 
-            <Row padded>
+            <About padded>
                 <Anchor id="about"></Anchor>
                 <Col span={4} style={{opacity: '0.3'}} mCenterText>
                     <ScrollRevealed delay={delay} fadeIn>
@@ -183,23 +273,19 @@ function Home() {
                 </Col>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay + 0.1} fadeIn>
-                        <Typography size="large">
-                            Web3<br/><br/>
-                            Tech<br/><br/>
-                            Culture
-                        </Typography>
+                        <AboutItem size="large">Web3</AboutItem>
+                        <AboutItem size="large">Tech</AboutItem>
+                        <AboutItem size="large">Culture</AboutItem>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay + 0.2} fadeIn>
-                        <Typography size="large">
-                            Realestate<br/><br/>
-                            Non-For-Profit<br/><br/>
-                            Craft
-                        </Typography>
+                        <AboutItem size="large">Realestate</AboutItem>
+                        <AboutItem size="large">Non-For-Profit</AboutItem>
+                        <AboutItem size="large">Craft</AboutItem>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </About>
 
             <Separator/>
 
@@ -393,9 +479,9 @@ function Home() {
 
             <Separator/>
 
-            <Row padded>
+            <HowTo padded>
                 <Anchor id="how-to"></Anchor>
-                <Col span={4} mCenterText>
+                <Col span={4} style={{opacity: '0.3'}} mCenterText>
                     <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large">
                             How to:
@@ -404,21 +490,17 @@ function Home() {
                 </Col>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay + 0.1} fadeIn>
-                        <Typography size="large">
-                            Create Branding Strategy<br/><br/>
-                            Communicate Visually
-                        </Typography>
+                        <HowToItem size="large">Create Branding Strategy</HowToItem>
+                        <HowToItem size="large">Communicate Visually</HowToItem>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay + 0.2} fadeIn>
-                        <Typography size="large">
-                            Form a Brand Identity<br/><br/>
-                            Design a Product
-                        </Typography>
+                        <HowToItem size="large">Form a Brand Identity</HowToItem>
+                        <HowToItem size="large">Design a Product</HowToItem>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </HowTo>
 
             <Separator/>
 
@@ -426,7 +508,7 @@ function Home() {
                 <Col span={4}>
                     <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large" className="max-col-typography-width">
-                            In Triforce, we are dedicated to meeting customers unique needs and providing them with the highest quality solutions. Here are a few statements from our clients:
+                            We are dedicated to meeting customers unique needs and providing them with the highest quality solutions. Here are a few statements from our clients:
                         </Typography>
                     </ScrollRevealed>
                 </Col>
@@ -439,7 +521,7 @@ function Home() {
             
             <Separator/>
 
-            <Row padded>
+            <Contact padded>
                 <Anchor id="contact"></Anchor>
                 <Col span={4}>
                     <ScrollRevealed delay={delay} fadeIn>
@@ -459,11 +541,11 @@ function Home() {
                         <Typography size="large">hello@triforcestudio.com</Typography>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </Contact>
 
             <Separator/>
 
-            <Row padded>
+            <Footer padded>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay} fadeIn>
                         <Typography size="large">Feel free to reach out if you want to collaborate with us, or simply have a chat.</Typography>
@@ -483,14 +565,14 @@ function Home() {
                                 <Typography size="large">Follow us:</Typography>
                             </Col>
                             <Col span={9}>
-                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.instagram.com/triforcecreates/" target="_blank">Instagram</Typography>
-                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.linkedin.com/company/triforcestudio" target="_blank">Linkedin</Typography>
-                                <Typography size="large" opacity={0.3} className="social-link" inline href="https://www.behance.net/triforcestudio" target="_blank">Behance</Typography>
+                                <SocialLink size="large" opacity={0.3} inline href="https://www.instagram.com/triforcecreates/" target="_blank">Instagram</SocialLink>
+                                <SocialLink size="large" opacity={0.3} inline href="https://www.linkedin.com/company/triforcestudio" target="_blank">Linkedin</SocialLink>
+                                <SocialLink size="large" opacity={0.3} inline href="https://www.behance.net/triforcestudio" target="_blank">Behance</SocialLink>
                             </Col>
                         </Row>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </Footer>
         </Root>
     );
 }

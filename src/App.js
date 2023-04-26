@@ -63,7 +63,6 @@ const GlobalStyle = createGlobalStyle`
 
 const VerticalLine = styled.div`
     position: absolute;
-    // z-index: 10;
     top: 0;
     bottom: 0;
     width: 20px;
@@ -108,24 +107,30 @@ const colorDark = '#000000';
 const colorLight = '#F3F3F3';
 
 function App() {
+    const [themeToggled, setThemeToggled] = useState(localStorage.getItem('triforceStudioThemeToggle') === 'true');
+
     const [theme, setTheme] = useState({
         p: padding,
         bodyP: bodyPadding,
         device: {
             mobile: '@media only screen and (max-width: 768px)',
-            desktop: '@media only screen and (min-width: 769px)'
+            laptop: '@media only screen and (min-width: 769px) and (max-width: 1919px)',
+            desktop: '@media only screen and (min-width: 1920px)'
         },
         color: {
             light: '#F3F3F3',
             dark: '#000000'
         },
         themeColor: {
-            main: colorLight,
-            bg: colorDark
+            main: themeToggled ? colorDark : colorLight,
+            bg: themeToggled ? colorLight : colorDark
         },
     });
 
     function switchTheme() {
+        localStorage.setItem('triforceStudioThemeToggle', !themeToggled);
+        setThemeToggled(!themeToggled);
+
         setTheme({
             ...theme,
             themeColor: {
@@ -134,7 +139,7 @@ function App() {
             }
         })
     }
-    console.log('themeee', theme);
+
     return (
         <Root className="App" theme={theme}>
             <GlobalStyle theme={theme}/>
