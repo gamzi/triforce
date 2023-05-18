@@ -17,6 +17,7 @@ import "./assets/font/NeurialGrotesk-LightItalic.otf";
 import "./assets/font/NeurialGrotesk-Medium.otf";
 import "./assets/font/NeurialGrotesk-MediumItalic.otf";
 import "./assets/font/NeurialGrotesk-Regular.otf";
+import Typography from './components/Typography';
 
 
 
@@ -99,8 +100,13 @@ const VerticalLine = styled.div`
 `;
 
 const Footer = styled(Row)`
-    margin-top: 36px;
-    margin-bottom: 16px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    ${props => props.theme.device.mobile} {
+        padding-top: 25px;
+        padding-bottom: 5px;
+    }
 `;
 
 const colorDark = '#000000';
@@ -159,10 +165,10 @@ function App() {
 
                 <Footer>
                     <Col span={4} ms={6}>
-                        © 2023 Triforce
+                        <Typography>© 2023 Triforce</Typography>
                     </Col>
                     <Col span={8} ms={6} alignRight>
-                        2019-2023
+                        <Typography>2019-2023</Typography>
                     </Col>
                 </Footer>
             </ThemeProvider>

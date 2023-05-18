@@ -37,7 +37,6 @@ const Line = styled.div`
     }
 
     ${props => props.theme.device.mobile} {
-
         @keyframes expand {
             0% {
                 right: 100%;
@@ -49,14 +48,15 @@ const Line = styled.div`
     }
 `;
 
-const Separator = ({noAnimation = false}) => {
+const Separator = (props) => {
+    let { noAnimation = false } = props;
     const ref = useRef(null);
   
     const isInViewport = useIsInViewport(ref);
     
     return (
         <Root ref={ref}>
-            <Line show={noAnimation || isInViewport} noAnimation={noAnimation}/>
+            <Line show={noAnimation || isInViewport} noAnimation={noAnimation} {...props}/>
         </Root>
     );
 }

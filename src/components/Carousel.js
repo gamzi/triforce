@@ -56,11 +56,13 @@ const Description = styled(Typography)`
     max-width: 405px;
 
     ${props => props.theme.device.mobile} {
+        margin-top: 42px !important;
         max-width: initial;
     }
 `;
 
-function Carousel({items = []}) {
+function Carousel(props) {
+    const {items = []} = props;
     const [offset, setOffset] = useState(1);
     const maxOffset = items.length - 1;
 
@@ -87,7 +89,7 @@ function Carousel({items = []}) {
     }
 
     return (
-        <Root offset={offset}>
+        <Root offset={offset} {...props}>
             {
                 items.map((item) => 
                     <Item key={item.info[0]}>
@@ -102,7 +104,7 @@ function Carousel({items = []}) {
                                 )
                             }
                         </Header>
-                        <Description>{item.description}</Description>
+                        <Description mFontSize={1.25}>{item.description}</Description>
                     </Item>
                 )
             }

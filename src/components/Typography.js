@@ -24,29 +24,29 @@ export const Root = styled.p`
 `;
 
 const Typography = (props) => {
-    let { size = "medium", opacity = '1', children, inline = false, as = "p", href = "" } = props;
-    let fontSize;
-    let mFontSize;
-    let lFontSize;
+    let { size = "medium", opacity = '1', children, inline = false, as = "p", href = "", fontSize, lFontSize, mFontSize } = props;
+    let fontSizeDefault;
+    let mFontSizeDefault;
+    let lFontSizeDefault;
     let lhMultiplier;
 
     switch(size) {
         case "xlarge": 
-            fontSize = 3;
-            lFontSize = 2.375;
-            mFontSize = 2;
+            fontSizeDefault = 3;
+            lFontSizeDefault = 2.375;
+            mFontSizeDefault = 2;
             lhMultiplier = 1.2;
             break;
         case "large":
-            fontSize = 1.5;
-            lFontSize = 1.25;
-            mFontSize = 1.5;
+            fontSizeDefault = 1.5;
+            lFontSizeDefault = 1.25;
+            mFontSizeDefault = 1.5;
             lhMultiplier = 1.5;
             break;
         default:
-            fontSize = 1;
-            lFontSize = .875;
-            mFontSize = .75;
+            fontSizeDefault = 1;
+            lFontSizeDefault = .875;
+            mFontSizeDefault = .75;
             lhMultiplier = 1.5;
     }
 
@@ -59,9 +59,9 @@ const Typography = (props) => {
             as={as}
             href={href}
             opacity={opacity} 
-            fontSize={fontSize} 
-            lFontSize={lFontSize}
-            mFontSize={mFontSize} 
+            fontSize={fontSize || fontSizeDefault} 
+            lFontSize={lFontSize || lFontSizeDefault}
+            mFontSize={mFontSize || mFontSizeDefault} 
             lhMultiplier={lhMultiplier}
             inline={inline}
             {...props}>
