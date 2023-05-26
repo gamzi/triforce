@@ -14,9 +14,13 @@ const Link = styled.a`
     padding: 0 20px;
     user-select: none;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 1rem;
     text-decoration: none;
     text-align: center;
+
+    @media ${props => props.theme.device.laptop} {
+        font-size: 0.875rem;
+    }
 `;
 
 const Root = styled.div`
