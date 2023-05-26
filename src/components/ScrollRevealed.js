@@ -17,20 +17,20 @@ const Content = styled.div`
     ${(props) => props.show && props.animation};
 `;
 
-const ScrollRevealed = ({delay = 0, children, fadeIn = false, className}) => {
+const ScrollRevealed = ({delay = 0, duration = 0.5, children, fadeIn = false, className, style}) => {
     const ref = useRef(null);
 
-    let animation = `animation: 0.5s cubic-bezier(.7,.57,.27,.82) ${delay}s 1 slideInFromBottom both`;
+    let animation = `animation: ${duration}s cubic-bezier(.7,.57,.27,.82) ${delay}s 1 slideInFromBottom both`;
 
     if (fadeIn) {
-        animation += `, 0.5s ease-in 0s 1 fade-in both`;
+        animation += `, ${duration}s ease-in 0s 1 fade-in both`;
     }
   
     const isInViewport = useIsInViewport(ref);
   
     return (
-        <Root ref={ref} className={className}>
-            <Content show={isInViewport} delay={delay} animation={animation}>
+        <Root ref={ref} className={className} style={style}>
+            <Content show={isInViewport} delay={delay} duration={duration} animation={animation}>
                 {children}
             </Content>
         </Root>

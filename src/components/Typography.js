@@ -10,12 +10,12 @@ export const Root = styled.p`
         display: inline-block;
     `}
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         font-size: ${(props) => props.mFontSize}rem;
         line-height: ${(props) => props.mFontSize * props.lhMultiplier}rem;
     }
 
-    ${props => props.theme.device.laptop} {
+    @media ${props => props.theme.device.laptop} {
         font-size: ${(props) => props.lFontSize}rem;
         line-height: ${(props) => props.lFontSize * props.lhMultiplier}rem;
     }

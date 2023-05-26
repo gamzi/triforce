@@ -17,7 +17,7 @@ const Line = styled.div`
             return `
                 right: -${props.theme.bodyP}px;
                 
-                ${props.theme.device.mobile} {
+                @media ${props.theme.device.mobile} {
                     right: -${props.theme.p}px;
                 }
                 
@@ -36,7 +36,7 @@ const Line = styled.div`
         }
     }
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         @keyframes expand {
             0% {
                 right: 100%;

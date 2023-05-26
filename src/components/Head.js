@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Row, Col} from './Grid';
 import Typography from './Typography';
 import ScrollRevealed from './ScrollRevealed';
+import Clock from './Clock';
 
 import { ReactComponent as TitleImage } from '../assets/title.svg';
 
@@ -40,6 +41,22 @@ const ImageScrollItem = styled(TitleImage)`
     }
 `;
 
+const SubtitleSection = styled(Row)`
+    padding: 120px 0 60px 0;
+
+    @media ${props => props.theme.device.laptop} {
+        padding: 90px 0 20px 0;
+    }
+
+    @media ${props => props.theme.device.mobile} {
+        padding: 190px 0 56px 0;
+    }
+`;
+
+const Subtitle = styled(Typography)`
+    max-width: 500px;
+`;
+
 const Disclaimer = styled(Typography)`
     margin-top: 130px;
     padding-left: 8px;
@@ -49,20 +66,8 @@ const Disclaimer = styled(Typography)`
         margin-left: -8px;
     }
     
-    ${props => props.theme.device.desktop} {
+    @media ${props => props.theme.device.desktop} {
         margin-top: 230px;
-    }
-`;
-
-const Subtitle = styled(Row)`
-    padding: 120px 0 60px 0;
-
-    ${props => props.theme.device.laptop} {
-        padding: 90px 0 20px 0;
-    }
-
-    ${props => props.theme.device.mobile} {
-        padding: 190px 0 56px 0;
     }
 `;
 
@@ -80,13 +85,13 @@ const Head = ({delay = 1}) => {
                 </ImageScrollWrapper>
             </TitleWrapper>
 
-            <Subtitle padded>
+            <SubtitleSection padded>
                 <Col span={4} className="desktop-only">
                     <ScrollRevealed delay={delay + 0.3} fadeIn>
                         <Typography size="large" opacity={0.3}>
                             Made in Belgrade, Serbia<br/>
                             44.8125° N, 20.4612° E<br/>
-                            Local Time → 5:27 PM
+                            Local Time → <Clock timeZone="Europe/Belgrade"></Clock>
                         </Typography>
                     </ScrollRevealed>
                 </Col>
@@ -95,21 +100,21 @@ const Head = ({delay = 1}) => {
                         <Typography size="large" opacity={0.3}>
                             Based in Miami, USA<br/>
                             25.7617° N, 80.1918° W<br/>
-                            Local Time → 11:27 PM
+                            Local Time → <Clock timeZone="America/New_York"></Clock>
                         </Typography>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4}>
                     <ScrollRevealed delay={delay + 0.5} fadeIn>
-                        <Typography size="xlarge">
+                        <Subtitle size="xlarge">
                             We help create visual narratives that move businesses, people and the world forward.
-                        </Typography>
+                        </Subtitle>
                         <Disclaimer opacity={0.3}>
                             Our full web presentation is currently in production. In the meantime, please enjoy the short version and feel free to reach out for any additional details.
                         </Disclaimer>
                     </ScrollRevealed>
                 </Col>
-            </Subtitle>
+            </SubtitleSection>
         </Root>
     );
 }

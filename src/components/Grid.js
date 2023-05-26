@@ -7,13 +7,12 @@ export const Row = styled.div`
     
     margin-right: -20px;
     ${(props) => props.padded && `padding: 84px 0 64px 0;`}
-
     
-    ${(props) => `${props.theme.device.laptop} {
+    @media ${(props) => `${props.theme.device.laptop} {
         ${props.padded && `padding: 60px 0 40px 0;`}
     }`}
 
-    ${(props) => `${props.theme.device.mobile} {
+    @media ${(props) => `${props.theme.device.mobile} {
         ${props.padded && `padding: 40px 0 20px 0;`}
     }`}
 `;
@@ -35,7 +34,7 @@ export const Col = styled.div`
         margin-right: 0;
     }
 
-    ${(props) => `${props.theme.device.mobile} {
+    @media ${(props) => `${props.theme.device.mobile} {
         flex-basis: calc(100% / 12 * ${props.ms || 12} - 20px);
 
         ${props.mCenterText && `

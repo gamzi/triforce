@@ -13,7 +13,7 @@ const Root = styled.div`
     margin-left: calc(((100% - 20px) * 1/2 + 20px) * -1 * ${(props) => props.offset});
     transition: margin-left 1s;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         margin-left: calc( (100% + 20px) * -1 * ${(props) => props.offset});
     }
 `;
@@ -23,7 +23,7 @@ const Header = styled.div`
     max-width: 405px;
     padding-right: 20px;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         max-width: initial;
     }
 `;
@@ -46,7 +46,7 @@ const Item = styled.div`
     width: calc((100% - 20px) * 1/2);
     margin-right: 20px;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         width: 100%;
     }
 `;
@@ -55,7 +55,12 @@ const Description = styled(Typography)`
     margin-top: 82px !important;
     max-width: 405px;
 
-    ${props => props.theme.device.mobile} {
+    
+    @media ${props => props.theme.device.laptop} {
+        max-width: 295px;
+    }
+
+    @media ${props => props.theme.device.mobile} {
         margin-top: 42px !important;
         max-width: initial;
     }

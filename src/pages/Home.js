@@ -12,6 +12,7 @@ import work_preview_big_1 from '../assets/work_preview_big_1.png';
 import work_preview_square_right_1 from '../assets/work_preview_square_right_1.png';
 import work_preview_square_left_1 from '../assets/work_preview_square_left_1.png';
 import work_preview_horizontal_1 from '../assets/work_preview_horizontal_1.png';
+import fodl_gradient from '../assets/fodl_gradient.svg';
 
 import work_preview_big_2 from '../assets/work_preview_big_2.png';
 import work_preview_square_left_2 from '../assets/work_preview_square_left_2.png';
@@ -31,6 +32,42 @@ import work_preview_square_left_6 from '../assets/work_preview_square_left_6.png
 import work_preview_square_right_4 from '../assets/work_preview_square_right_4.png';
 
 
+const BoxedHorizontalImage = styled.div`
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 0;
+    padding-top: 56.25%;
+
+    @media ${props => props.theme.device.mobile} {
+        padding-top: 100%;
+    }
+
+    background-size: cover;
+    background-position: center center; 
+
+    ${(props) => props.backgroundImage && `
+        background-image: url(${props.backgroundImage});
+    `};
+
+    ${(props) => props.backgroundGradient && `
+        background: linear-gradient(${props.backgroundGradient});
+    `};
+
+    img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 69%;
+        max-width: 1300px;
+
+        @media ${props => props.theme.device.mobile} {
+            width: 85%;
+        }
+    }
+`;
+
 const Image = styled.div`
     width: 100%;
     display: block;
@@ -43,7 +80,7 @@ const Image = styled.div`
         padding-top: 73%;
         margin-bottom: ${props.theme.p}px;
 
-        ${props.theme.device.mobile} {
+        @media ${props.theme.device.mobile} {
             height: 480px;
             padding: 0;
         }
@@ -53,15 +90,11 @@ const Image = styled.div`
         padding-top: 100%;
     `};
 
-    ${(props) => props.horizontal && `
-        padding-top: 56.25%;
-    `};
-
     ${(props) => props.tall && `
         width: 100%;
         height: 100%;
         
-        ${props.theme.device.mobile} {
+        @media ${props.theme.device.mobile} {
             margin-top: ${props.theme.p}px;
             padding-top: 100%;
         }
@@ -81,7 +114,7 @@ const Root = styled.div`
     .work-row {
         margin-top: 112px;
         
-        ${(props) => `${props.theme.device.mobile} {
+        @media ${(props) => `${props.theme.device.mobile} {
             margin-top: ${props.theme.p}px;
         }`}
     }
@@ -89,51 +122,45 @@ const Root = styled.div`
     .work-row > ${Col} {
         align-self: flex-start;
     }
+    
+    .work-row > ${Col}.sticky {
+        position: sticky;
+        top: 120px;
 
-    ${props => props.theme.device.desktop} {
-        .work-row > ${Col}.sticky {
-            position: sticky;
-            top: 120px;
+        @media ${props => props.theme.device.mobile} {
+            position: initial;
         }
     }
 
     .work-row > ${Col} ${Image}:not(:last-child) {
         margin-bottom: ${props => props.theme.p}px;
     }
-
-    .max-col-typography-width {
-        max-width: 350px; 
-
-        ${(props) => `${props.theme.device.mobile} {
-            max-width: initial;
-        }`}
-    }
 `;
 
 const About = styled(Row)`{
     padding-bottom: 145px;
 
-    ${props => props.theme.device.laptop} {
+    @media ${props => props.theme.device.laptop} {
         padding-bottom: 130px;
     }
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         padding: 74px 0 70px;
     }
 }`;
 
 const AboutItem = styled(Typography)`{
     &:not(:first-child) {
-        ${props => props.theme.device.desktop} {
+        @media ${props => props.theme.device.desktop} {
             margin-top: 74px;
         }
 
-        ${props => props.theme.device.laptop} {
+        @media ${props => props.theme.device.laptop} {
             margin-top: 50px;
         }
     }
     
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         margin-top: 50px;
         
         &:first-child {
@@ -143,29 +170,25 @@ const AboutItem = styled(Typography)`{
 }`;
 
 const HowTo = styled(Row)`{
-    padding-bottom: 260px;
+    padding-bottom: 164px;
 
-    ${props => props.theme.device.laptop} {
-        padding-bottom: 180px;
-    }
-
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         padding: 120px 0 170px;
     }
 }`;
 
 const HowToItem = styled(Typography)`{
     &:not(:first-child) {
-        ${props => props.theme.device.desktop} {
+        @media ${props => props.theme.device.desktop} {
             margin-top: 74px;
         }
         
-        ${props => props.theme.device.laptop} {
+        @media ${props => props.theme.device.laptop} {
             margin-top: 74px;
         }
     }
     
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         margin-top: 70px;
         
         &:first-child {
@@ -175,62 +198,161 @@ const HowToItem = styled(Typography)`{
 }`;
 
 const Contact = styled(Row)`{
+    padding-top: 80px;
     padding-bottom: 127px;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
+        padding-top: 40px;
         padding-bottom: 40px;
 
         ${Col}:nth-of-type(2) {
             margin: 40px 0 95px;
         }
     }
+
+    .contact-title {
+        max-width: 220px;
+
+        @media ${(props) => `${props.theme.device.mobile} {
+            max-width: initial;
+        }`}
+    }
+
+    .contact-description {
+        max-width: 340px;
+
+        @media ${(props) => `${props.theme.device.mobile} {
+            max-width: initial;
+        }`}
+    }
 }`;
 
 const Footer = styled(Row)`{
-    ${props => props.theme.device.mobile} {
+    padding: 60px 0 66px 0;
+
+    @media ${props => props.theme.device.mobile} {
         padding: 65px 0 72px 0;
     
         >${Col}:nth-of-type(2) {
             margin: 58px 0 102px;
         }
     }
+
+    .footer-description {
+        max-width: 314px;
+
+        @media ${(props) => `${props.theme.device.mobile} {
+            max-width: initial;
+        }`}
+    }
 }`;
 
-const SocialLink = styled(Typography)`{
-    box-sizing: border-box;
-    min-width: 33.33%;
-    padding-right: ${props => props.theme.p}px;
+const SocialsSection = styled.div`{
+    display: flex;
+    flex-wrap: wrap;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         text-align: center;
+    }
+}`
+
+const SocialsSectionTitle = styled(Typography)`{
+    white-space: nowrap;
+    margin: 0 50px 20px 0;
+
+    @media ${props => props.theme.device.mobile} {
         width: 100%;
-        padding-right: 0;
+        margin: 0;
+    }
+}`
+
+const SocialLinks = styled.div`{
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-between;
+
+    @media ${props => props.theme.device.laptop} {
+        min-width: 100%;
+    }
+
+    @media ${props => props.theme.device.mobile} {
+        flex-direction: column;
+    }
+}`
+
+const SocialLink = styled(Typography)`{
+    @media ${props => props.theme.device.mobile} {
         margin-top: 50px;
     }
 }`
 
+const CarouselSection = styled(Row)`{
+    padding-bottom: 112px;
+
+    @media ${props => props.theme.device.mobile} {
+        padding-bottom: 40px;
+    }
+
+    .carousel-description {
+        max-width: 350px;
+
+        @media ${(props) => `${props.theme.device.laptop} {
+            max-width: 295px; 
+        }`}
+
+        @media ${(props) => `${props.theme.device.mobile} {
+            max-width: initial;
+            opacity: 0.3
+        }`}
+    }
+}`;
+
 const StyledCarousel = styled(Carousel)`{
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         margin-top: 70px;
     }
 }`
 
 const WorkDescription = styled.div`
     padding: 120px ${props => props.theme.p}px 0 0;
-    max-width: 285px;
+    max-width: 290px;
 
-    ${props => props.theme.device.mobile} {
+    &.medium {
+        max-width: 275px;
+    }
+    &.small {
+        max-width: 249px;
+
+        @media ${props => props.theme.device.desktop} {
+            max-width: 257px;
+        }
+    }
+
+    @media ${props => props.theme.device.mobile} {
         max-width: none;
         padding: 0;
+
+        &.medium, &.small {
+            max-width: none;
+        }
     }
 
     .description {
         margin-top: 54px;
         
-        ${(props) => `${props.theme.device.mobile} {
+        @media ${(props) => `${props.theme.device.mobile} {
             opacity: .7;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }`}
+
+        &.last {
+            margin-bottom: 240px;
+
+            @media ${(props) => `${props.theme.device.mobile} {
+                margin-bottom: 40px;
+            `}
+        }
     }
 `;
 
@@ -294,14 +416,14 @@ function Home() {
                     <ScrollRevealed delay={delay + 0.1} fadeIn>
                         <AboutItem size="large">Web3</AboutItem>
                         <AboutItem size="large">Tech</AboutItem>
-                        <AboutItem size="large">Culture</AboutItem>
+                        <AboutItem size="large">Startups</AboutItem>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4} mCenterText>
-                    <ScrollRevealed delay={delay + 0.2} fadeIn>
-                        <AboutItem size="large">Realestate</AboutItem>
+                    <ScrollRevealed delay={delay + 0.1} fadeIn>
+                        <AboutItem size="large">Culture</AboutItem>
                         <AboutItem size="large">Non-For-Profit</AboutItem>
-                        <AboutItem size="large">Craft</AboutItem>
+                        <AboutItem size="large">Entertainment</AboutItem>
                     </ScrollRevealed>
                 </Col>
             </About>
@@ -312,17 +434,18 @@ function Home() {
                 <Anchor id="work"></Anchor>
 
                 <Col span={12} className="mobile-only">
-                    <ScrollRevealed fadeIn>
+                    <ScrollRevealed fadeIn duration={0.7}>
                         <Image src={work_preview_big_1} large></Image>
                     </ScrollRevealed>
                 </Col>
 
                 <Col span={4} className="sticky">
                     <ScrollRevealed fadeIn>
-                        <WorkDescription>
+                        <WorkDescription className="small">
                             <Typography size="large">Fodl</Typography>
-                            <Typography size="large">Branding, UI, Web</Typography>
+                            <Typography size="large">Branding, UX, UI, Web</Typography>
                             <Typography size="large">New York, USA</Typography>
+                            <Typography size="large">2022</Typography>
                             <Typography mFontSize={1.25} className="description">
                                 FODL is a fully decentralized (non-custodial) leverage trading platform using liquidity from collateral lending platforms like Compound and Aave instead of funding rate and margin markets.
                             </Typography>
@@ -330,23 +453,25 @@ function Home() {
                     </ScrollRevealed>
                 </Col>
                 <Col span={8}>
-                    <ScrollRevealed fadeIn className="desktop-only">
+                    <ScrollRevealed fadeIn className="desktop-only" duration={0.7}>
                         <Image src={work_preview_big_1} large></Image>
                     </ScrollRevealed>
                     <Row>
                         <Col span={6}>
-                            <ScrollRevealed fadeIn>
-                                <Image src={work_preview_square_left_1} square></Image>
-                            </ScrollRevealed>
-                        </Col>
-                        <Col span={6}>
-                            <ScrollRevealed delay={0.1} fadeIn>
+                            <ScrollRevealed fadeIn duration={0.7}>
                                 <Image src={work_preview_square_right_1} square></Image>
                             </ScrollRevealed>
                         </Col>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn duration={0.7}>
+                                <Image src={work_preview_square_left_1} square></Image>
+                            </ScrollRevealed>
+                        </Col>
                     </Row>
-                    <ScrollRevealed fadeIn>
-                        <Image src={work_preview_horizontal_1} horizontal></Image>
+                    <ScrollRevealed fadeIn duration={0.7}>
+                        <BoxedHorizontalImage backgroundImage={fodl_gradient}>
+                            <img src={work_preview_horizontal_1} alt="Fodl UI"></img>
+                        </BoxedHorizontalImage>
                     </ScrollRevealed>
                 </Col>
             </Row>
@@ -355,7 +480,7 @@ function Home() {
 
             <Row className="work-row">
                 <Col span={12} className="mobile-only">
-                    <ScrollRevealed fadeIn>
+                    <ScrollRevealed fadeIn duration={0.7}>
                         <Image src={work_preview_big_2} large></Image>
                     </ScrollRevealed>
                 </Col>
@@ -373,30 +498,28 @@ function Home() {
                         </WorkDescription>
                     </ScrollRevealed>
                 </Col>
-                <Col span={8}>
-                    <ScrollRevealed fadeIn className="desktop-only">
+                <Col span={8} noBottomMargin>
+                    <ScrollRevealed fadeIn className="desktop-only" duration={0.7}>
                         <Image src={work_preview_big_2} large></Image>
                     </ScrollRevealed>
                     <Row>
                         <Col span={6}>
-                            <ScrollRevealed fadeIn>
+                            <ScrollRevealed fadeIn duration={0.7}>
                                 <Image src={work_preview_square_right_2} square></Image>
                             </ScrollRevealed>
                         </Col>
                         <Col span={6}>
-                            <ScrollRevealed delay={0.1} fadeIn>
+                            <ScrollRevealed delay={0.1} fadeIn duration={0.7}>
                                 <Image src={work_preview_square_left_2} square></Image>
                             </ScrollRevealed>
                         </Col>
-                    </Row>
-                    <Row>
                         <Col span={6}>
-                            <ScrollRevealed fadeIn>
+                            <ScrollRevealed fadeIn duration={0.7}>
                                 <Image src={work_preview_square_left_5} square></Image>
                             </ScrollRevealed>
                         </Col>
                         <Col span={6}>
-                            <ScrollRevealed delay={0.1} fadeIn>
+                            <ScrollRevealed delay={0.1} fadeIn duration={0.7}>
                                 <Image src={work_preview_square_right_5} square></Image>
                             </ScrollRevealed>
                         </Col>
@@ -408,18 +531,18 @@ function Home() {
 
             <Row className="work-row">
                 <Col span={12} className="mobile-only">
-                    <ScrollRevealed fadeIn>
+                    <ScrollRevealed fadeIn duration={0.7}>
                         <Image src={work_preview_big_5} large></Image>
                     </ScrollRevealed>
                 </Col>
 
                 <Col span={4} className="sticky">
                     <ScrollRevealed fadeIn>
-                        <WorkDescription>
+                        <WorkDescription className="small">
                             <Typography size="large">Venato</Typography>
                             <Typography size="large">Branding, UI, Web</Typography>
                             <Typography size="large">New York, USA</Typography>
-                            <Typography size="large">2023</Typography>
+                            <Typography size="large">2022</Typography>
                             <Typography mFontSize={1.25} className="description">
                                 Venato is a revolutionary portfolio tracking software, engineered to address the unique pricing and tracking challenges presented by DeFi investments. Venato provides users with a comprehensive solution to effectively manage and monitor investments in this rapidly growing sector.
                             </Typography>
@@ -427,23 +550,25 @@ function Home() {
                     </ScrollRevealed>
                 </Col>
                 <Col span={8}>
-                    <ScrollRevealed fadeIn className="desktop-only">
+                    <ScrollRevealed fadeIn className="desktop-only" duration={0.7}>
                         <Image src={work_preview_big_5} large></Image>
                     </ScrollRevealed>
                     <Row>
                         <Col span={6}>
-                            <ScrollRevealed fadeIn>
-                                <Image src={work_preview_square_left_3} square></Image>
-                            </ScrollRevealed>
-                        </Col>
-                        <Col span={6}>
-                            <ScrollRevealed delay={0.1} fadeIn>
+                            <ScrollRevealed fadeIn duration={0.7}>
                                 <Image src={work_preview_square_right_3} square></Image>
                             </ScrollRevealed>
                         </Col>
+                        <Col span={6}>
+                            <ScrollRevealed delay={0.1} fadeIn duration={0.7}>
+                                <Image src={work_preview_square_left_3} square></Image>
+                            </ScrollRevealed>
+                        </Col>
                     </Row>
-                    <ScrollRevealed fadeIn>
-                        <Image src={work_preview_horizontal_3} horizontal></Image>
+                    <ScrollRevealed fadeIn duration={0.7}>
+                        <BoxedHorizontalImage backgroundGradient={'227.17deg, #55E695 19.77%, #37C0C8 38.21%, #20A1F0 54.89%, #1796FF 63.53%, #2290FD 65.4%, #4B7AF4 72.98%, #686BED 79.88%, #7A61E9 85.83%, #805EE8 90.14%'}>
+                            <img src={work_preview_horizontal_3} alt="Venato UI"></img>
+                        </BoxedHorizontalImage>
                     </ScrollRevealed>
                 </Col>
             </Row>
@@ -452,19 +577,19 @@ function Home() {
 
             <Row className="work-row">
                 <Col span={12} className="mobile-only">
-                    <ScrollRevealed fadeIn>
+                    <ScrollRevealed fadeIn duration={0.7}>
                         <Image src={work_preview_big_6} large></Image>
                     </ScrollRevealed>
                 </Col>
 
                 <Col span={4} className="sticky">
-                    <WorkDescription>
+                    <WorkDescription className="medium">
                         <ScrollRevealed delay={delay} fadeIn>
                             <Typography size="large">Sequence Groovebox</Typography>
                             <Typography size="large">Branding, UI</Typography>
                             <Typography size="large">Belgrade, Serbia</Typography>
                             <Typography size="large">2019</Typography>
-                            <Typography mFontSize={1.25} className="description">
+                            <Typography mFontSize={1.25} className="description last">
                                 Sequence Groovebox is an appealing and flexible Android app for music creation and performance. Unlock your creativity with different instruments and sounds, without stopping the music flow. Produce beats, bass lines and melodies using a powerful synthesizer and punchy drum machine.
                             </Typography>
                         </ScrollRevealed>
@@ -472,19 +597,19 @@ function Home() {
                 </Col>
 
                 <Col span={8}>
-                    <ScrollRevealed fadeIn className="desktop-only">
+                    <ScrollRevealed fadeIn className="desktop-only" duration={0.7}>
                         <Image src={work_preview_big_6} large></Image>
                     </ScrollRevealed>
                     
                     <Row>
                         <Col span={6} noBottomMargin>
-                            <ScrollRevealed fadeIn>
+                            <ScrollRevealed fadeIn duration={0.7}>
                                 <Image src={work_preview_square_left_4} square></Image>
                                 <Image src={work_preview_square_left_6} square></Image>
                             </ScrollRevealed>
                         </Col>
                         <Col span={6} noBottomMargin>
-                            <ScrollRevealed delay={0.1} fadeIn>
+                            <ScrollRevealed delay={0.1} fadeIn duration={0.7}>
                                 <Image src={work_preview_square_right_4} tall></Image>
                             </ScrollRevealed>
                         </Col>
@@ -519,10 +644,10 @@ function Home() {
 
             <Separator/>
 
-            <Row padded>
+            <CarouselSection padded>
                 <Col span={4}>
                     <ScrollRevealed delay={delay} fadeIn>
-                        <Typography size="large" className="max-col-typography-width">
+                        <Typography size="large" className="carousel-description">
                             We are dedicated to meeting customers unique needs and providing them with the highest quality solutions. Here are a few statements from our clients:
                         </Typography>
                     </ScrollRevealed>
@@ -532,7 +657,7 @@ function Home() {
                         <StyledCarousel items={referralList}></StyledCarousel>
                     </ScrollRevealed>
                 </Col>
-            </Row>
+            </CarouselSection>
             
             <Separator/>
 
@@ -540,13 +665,13 @@ function Home() {
                 <Anchor id="contact"></Anchor>
                 <Col span={4}>
                     <ScrollRevealed delay={delay} fadeIn>
-                        <Typography size="xlarge">Lets work together</Typography>
+                        <Typography size="xlarge" className="contact-title">Lets work together</Typography>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4}>
                     <ScrollRevealed delay={delay + 0.1} fadeIn>
-                        <Typography size="large" className="max-col-typography-width">
-                            We are enthusiastic about discovering more about your organization and helping you achieve a unique and clearly defined visual strategy.
+                        <Typography size="large" className="contact-description">
+                            We are enthusiastic about discovering more about your organization and assisting you in achieving a unique and clearly defined visual strategy.
                         </Typography>
                     </ScrollRevealed>
                 </Col>
@@ -563,7 +688,7 @@ function Home() {
             <Footer padded>
                 <Col span={4} mCenterText>
                     <ScrollRevealed delay={delay} fadeIn>
-                        <Typography size="large" className="max-col-typography-width">Feel free to reach out if you want to collaborate with us, or simply have a chat.</Typography>
+                        <Typography size="large" className="footer-description">Feel free to reach out if you want to collaborate with us, or simply have a chat.</Typography>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4} style={{opacity: '0.3'}} mCenterText>
@@ -575,16 +700,14 @@ function Home() {
                 </Col>
                 <Col span={4}>
                     <ScrollRevealed delay={delay + 0.2} fadeIn>
-                        <Row>
-                            <Col span={3} mCenterText>
-                                <Typography size="large">Follow us:</Typography>
-                            </Col>
-                            <Col span={9}>
+                        <SocialsSection>
+                            <SocialsSectionTitle size="large">Follow us:</SocialsSectionTitle>
+                            <SocialLinks>
                                 <SocialLink size="large" opacity={0.3} inline href="https://www.instagram.com/triforcecreates/" target="_blank">Instagram</SocialLink>
                                 <SocialLink size="large" opacity={0.3} inline href="https://www.linkedin.com/company/triforcestudio" target="_blank">Linkedin</SocialLink>
                                 <SocialLink size="large" opacity={0.3} inline href="https://www.behance.net/triforcestudio" target="_blank">Behance</SocialLink>
-                            </Col>
-                        </Row>
+                            </SocialLinks>
+                        </SocialsSection>
                     </ScrollRevealed>
                 </Col>
             </Footer>

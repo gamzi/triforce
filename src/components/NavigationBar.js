@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import logo from '../assets/logo.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { debounce } from '../util';
 
 import { ReactComponent as ThemeSwitchImage } from '../assets/theme_switch.svg';
 import { ReactComponent as LogoImage } from '../assets/logo.svg';
@@ -10,26 +11,27 @@ import { ReactComponent as IconClose } from '../assets/close.svg';
 const Link = styled.a`
     display: inline-block;
     margin: 0 10px;
-    width: 125px;
+    padding: 0 20px;
     user-select: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem;
     text-decoration: none;
     text-align: center;
 `;
 
 const Root = styled.div`
-    position: relative;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1;
     
-    position: fixed;
-    top: 0;
+    height: 124px;
+    top: ${props => !props.visible && !props.menuVisible ? '-124px' : '0'};
     left: 0;
     width: 100%;
-    padding: 43px 28px;
+    padding: 0 28px;
+    transition: top 0.4s;
 
     color: ${props => props.theme.themeColor.main};
 
@@ -81,6 +83,7 @@ const MobileActions = styled.div`
     top: 100%;
     height: 0;
     width: 100%;
+    padding-bottom: 124px;
     background-color: ${props => props.theme.themeColor.bg}80;
     transition: opacity 0.2s, height 0.2s;
     opacity: 0;
@@ -109,6 +112,7 @@ const ThemeButton = styled(ThemeSwitchImage)`
     display: inline-block;
     height: 10px;
     padding: 5px;
+    margin-left: 10px;
     vertical-align: middle;
     cursor: pointer;
 
@@ -122,14 +126,16 @@ const ThemeButton = styled(ThemeSwitchImage)`
         fill: currentColor;
     }
 
-    ${props => props.theme.device.desktop && `
-        margin-left: 23px;
-    `}
+    @media ${props => props.theme.device.mobile} {
+        margin-left: 0;
+    }
 `;
 
 const NavigationBar = ({onThemeSwitch}) => {
     const [themeToggled, setThemeToggled] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
 
     function toggleTheme() {
         setThemeToggled(!themeToggled);
@@ -140,8 +146,23 @@ const NavigationBar = ({onThemeSwitch}) => {
         setMenuVisible(!menuVisible);
     }
 
+    const handleScroll = debounce(() => {
+      const currentScrollPos = window.pageYOffset;
+  
+      setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
+  
+      setPrevScrollPos(currentScrollPos);
+    }, 100);
+
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => window.removeEventListener('scroll', handleScroll);
+  
+    }, [handleScroll]);
+
     return (
-        <Root menuVisible={menuVisible}>
+        <Root visible={visible} menuVisible={menuVisible}>
             <Logo src={logo}/>
             
             <Actions className="desktop-only">

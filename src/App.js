@@ -67,8 +67,8 @@ const VerticalLine = styled.div`
     top: 0;
     bottom: 0;
     width: 20px;
-    border-left: 1px dashed ${props => props.theme.themeColor?.main}15;
-    border-right: 1px dashed ${props => props.theme.themeColor?.main}15;
+    border-left: 1px dashed ${props => props.theme.themeColor?.main}20;
+    border-right: 1px dashed ${props => props.theme.themeColor?.main}20;
 
     &.start {
         left: calc(${bodyPadding - padding}px);
@@ -103,7 +103,7 @@ const Footer = styled(Row)`
     padding-top: 30px;
     padding-bottom: 30px;
 
-    ${props => props.theme.device.mobile} {
+    @media ${props => props.theme.device.mobile} {
         padding-top: 25px;
         padding-bottom: 5px;
     }
@@ -119,9 +119,9 @@ function App() {
         p: padding,
         bodyP: bodyPadding,
         device: {
-            mobile: '@media only screen and (max-width: 768px)',
-            laptop: '@media only screen and (min-width: 769px) and (max-width: 1919px)',
-            desktop: '@media only screen and (min-width: 1920px)'
+            mobile: '(max-width: 768px)',
+            laptop: '(min-width: 769px) and (max-width: 1919px)',
+            desktop: '(min-width: 1920px)'
         },
         color: {
             light: '#F3F3F3',
