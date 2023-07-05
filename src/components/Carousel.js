@@ -18,27 +18,6 @@ const Root = styled.div`
     }
 `;
 
-const Header = styled.div`
-    position: relative;
-    max-width: 405px;
-    padding-right: 20px;
-
-    @media ${props => props.theme.device.mobile} {
-        max-width: initial;
-    }
-`;
-
-const Link = styled(IconLink)`
-    position: absolute;
-    right: 0;
-    top: 10px;
-    cursor: pointer;
-
-    path {
-        fill: currentColor;
-    }
-`;
-
 const Item = styled.div`
     white-space: initial;
     display: inline-block;
@@ -51,18 +30,37 @@ const Item = styled.div`
     }
 `;
 
-const Description = styled(Typography)`
-    margin-top: 82px !important;
+const Content = styled.div`
+    width: 100%;
     max-width: 405px;
-
     
     @media ${props => props.theme.device.laptop} {
         max-width: 295px;
     }
 
     @media ${props => props.theme.device.mobile} {
-        margin-top: 42px !important;
         max-width: initial;
+    }
+`;
+
+const Header = styled.div`
+    position: relative;
+    padding-right: 20px;
+    margin-bottom: 82px;
+
+    @media ${props => props.theme.device.mobile} {
+        margin-bottom: 42px;
+    }
+`;
+
+const Link = styled(IconLink)`
+    position: absolute;
+    right: 0;
+    top: 10px;
+    cursor: pointer;
+
+    path {
+        fill: currentColor;
     }
 `;
 
@@ -98,18 +96,20 @@ function Carousel(props) {
             {
                 items.map((item) => 
                     <Item key={item.info[0]}>
-                        <Header>
-                            {   
-                                item.url && 
-                                    <Link onClick={() => openLink(item.url)}/>
-                            }
-                            {
-                                item.info.map(infoItem => 
-                                    <Typography key={infoItem} size="large">{infoItem}</Typography>
-                                )
-                            }
-                        </Header>
-                        <Description mFontSize={1.25}>{item.description}</Description>
+                        <Content>
+                            <Header>
+                                {   
+                                    item.url && 
+                                        <Link onClick={() => openLink(item.url)}/>
+                                }
+                                {
+                                    item.info.map(infoItem => 
+                                        <Typography key={infoItem} size="large">{infoItem}</Typography>
+                                    )
+                                }
+                            </Header>
+                            <Typography mFontSize={1.25}>{item.description}</Typography>
+                        </Content>
                     </Item>
                 )
             }

@@ -89,18 +89,18 @@ const Head = ({delay = 1}) => {
                 <Col span={4} className="desktop-only">
                     <ScrollRevealed delay={delay + 0.3} fadeIn>
                         <Typography size="large" opacity={0.3}>
-                            Made in Belgrade, Serbia<br/>
-                            44.8125° N, 20.4612° E<br/>
-                            Local Time → <Clock timeZone="Europe/Belgrade"></Clock>
+                            Based in Miami, USA<br/>
+                            25.7617° N, 80.1918° W<br/>
+                            Local Time → <Clock timeZone="America/New_York"></Clock>
                         </Typography>
                     </ScrollRevealed>
                 </Col>
                 <Col span={4} className="desktop-only">
                     <ScrollRevealed delay={delay + 0.4} fadeIn>
                         <Typography size="large" opacity={0.3}>
-                            Based in Miami, USA<br/>
-                            25.7617° N, 80.1918° W<br/>
-                            Local Time → <Clock timeZone="America/New_York"></Clock>
+                            Made in Belgrade, Serbia<br/>
+                            44.8125° N, 20.4612° E<br/>
+                            Local Time → <Clock timeZone="Europe/Belgrade"></Clock>
                         </Typography>
                     </ScrollRevealed>
                 </Col>
