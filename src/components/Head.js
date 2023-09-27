@@ -89,8 +89,8 @@ const Head = ({delay = 1}) => {
                 <Col span={4} className="desktop-only">
                     <ScrollRevealed delay={delay + 0.3} fadeIn>
                         <Typography size="large" opacity={0.3}>
-                            Based in Miami, USA<br/>
-                            25.7617° N, 80.1918° W<br/>
+                            Based in New York, USA<br/>
+                            40.7565° N, 73.9314° W<br/>
                             Local Time → <Clock timeZone="America/New_York"></Clock>
                         </Typography>
                     </ScrollRevealed>
